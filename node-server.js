@@ -4,6 +4,8 @@
 //var <local variable> = require('<module>')
 var http = require('http');
 var url = require('url');
+var express = require('express');
+var app = express();
 
 /*
 http.createServer(function(req,res){
@@ -12,7 +14,9 @@ http.createServer(function(req,res){
 */
 
 function startfunction(route, handle){
+/*	
 	function onRequest(request, response){
+
 		//url
 		var pathname = url.parse(request.url).pathname;
 		console.log('<url>Request for '+ pathname +' received.');
@@ -21,11 +25,22 @@ function startfunction(route, handle){
 		//
 		console.log('<function call>request received');
 		response.writeHead(200,{'Content-Type':'text/plain'});
-		response.write('hello world\n CrisKau pussy!');
-		response.end();
-	}
+		response.write('hello world \nyeh!');
 
-	http.createServer(onRequest).listen(80);
+		//connect to the front 
+		app.use(express.static(__dirname+'/html_project/'));
+
+		 response.end();
+	}
+*/
+	app.use('/gogo', express.static(__dirname+'/html_project/'));
+
+	//http.createServer(onRequest).listen(80);
+	http.Server(app).listen(80, () => {
+		console.log('wtf');
+	})
+	
+
 	console.log('<function call>server has started');
 
 }
