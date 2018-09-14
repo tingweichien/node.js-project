@@ -1,6 +1,7 @@
 
-//the convention to give same name for the local variable and requirement module
-//we require a module call http and asked it to give the return value or method to the local variable\
+
+//the convention to give same name for the local variable and requirement module,just like include a lib
+//we require a module call http and asked it to give the return value or method to the local variable
 //var <local variable> = require('<module>')
 var http = require('http');
 var url = require('url');
@@ -30,18 +31,21 @@ function startfunction(route, handle){
 		//connect to the front 
 		app.use(express.static(__dirname+'/html_project/'));
 
-		 response.end();
+		response.end();
 	}
-*/
-	app.use('/gogo', express.static(__dirname+'/html_project/'));
+*/	
+
+	//! this is used to build the connection between Back End and Front End
+	//app.use('/gogo', express.static(__dirname+'/html_project/'));
+	app.use(express.static(__dirname+'/html_project/'));
 
 	//http.createServer(onRequest).listen(80);
 	http.Server(app).listen(80, () => {
-		console.log('wtf');
+		console.log('start');
 	})
 	
 
-	console.log('<function call>server has started');
+	//console.log('<function call>server has started');
 
 }
 exports.start = startfunction;
